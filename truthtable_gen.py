@@ -42,10 +42,34 @@ def _parse_inputs(expression):
     syms.sort()
     
     return syms
+
+def _make_csv(exp, inputs, nested_list):
+    with open ('result_csv.csv', mode='w') as f:
+        f.write(exp)
+        f.write(',')
+        for sym in inputs:
+            f.write(sym)
+            f.write(',')
+        f.write("Out\n")
+
+        for n_list_index in range(len(nested_list)):
+            f.write(str(n_list_index))
+            f.write(',')
+            for in_n in range(len(inputs)):
+                f.write(str(nested_list[n_list_index][in_n]))
+                f.write(',')
+            f.write(str(nested_list[n_list_index][-1]))
+            f.write('\n')
     
+    print("Check CSV")
+
+        
+
 
 
 def ttable(expression, *inputs):
+    orig_expression =expression
+    n_list = []
     #remove spaces in expression
     expression = expression.replace(" ", "")
     # not
@@ -116,8 +140,11 @@ def ttable(expression, *inputs):
         ####################
         #calculate output
         # TODO:
+        bin_num.append(_calculate_postfix(new_exp, bin_num))
+        print(bin_num[-1])
+        n_list.append(bin_num)
 
-        print(_calculate_postfix(new_exp, bin_num))
+    _make_csv(orig_expression, inputs, n_list)
         ####################
     
 
