@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# author: JH Yeom
+
 import json
 
 class Boolexp(object):
@@ -11,7 +14,7 @@ class Boolexp(object):
     
     def yield_exp(self):
         for key, data in self.data.items():
-            yield (key, data[0])
+            yield [key, data[0]]
 
 if __name__ == "__main__":
     a = Boolexp()
