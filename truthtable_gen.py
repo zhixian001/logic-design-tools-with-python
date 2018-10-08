@@ -5,6 +5,7 @@
 import re
 import sys
 import os.path as ospath
+import os
 import parse_json
 
 # TODO: Check invalid symbols and expressions with re
@@ -69,6 +70,8 @@ class DrawTT(object):
 
     def make_csv(self):
         # TODO: Check output dir and if not exist, create.
+        if "output" not in os.listdir(os.getcwd()):
+            os.mkdir(ospath.join(os.getcwd(), "output"))
         for i in range(len(self.json_data)):
             with open(ospath.join("output", self.json_data[i][0]+".csv"), mode='w') as f:
                 f.write(self.json_data[i][1]['expression'])
