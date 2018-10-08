@@ -80,6 +80,7 @@ if __name__ == "__main__":
         sys.stdout.write("\nType command or boolean expression > ")
         exp = sys.stdin.readline()
         exp = exp.replace("\n", "")
+        exp = exp.replace("\r", "")
         if exp == "quit":
             sys.exit(0)
         elif exp == "exit":
