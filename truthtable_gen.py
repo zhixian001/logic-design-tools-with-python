@@ -42,24 +42,25 @@ class DrawTT(object):
 
     def _parse_inputs(self, expression=None):
         special_op_re = re.compile("[^\~!\'\\*&+|#@^=><()]*[0-9A-Za-z]{1,2}[^\~!\'\\*&+|#@^=><()]*")
-        if expression != None:
-            new_exp = expression.replace(" ", "")
-            syms = list(set(re.findall(special_op_re, new_exp)))
-            syms.sort()
-            return syms
-        
-        else:
-            for i in range(len(self.json_data)):
-                self.json_data[i][1]['expression'] = self.json_data[i][1]['expression'].replace(" ", "")
-                symbols = list(set(re.findall(special_op_re, self.json_data[i][1]['expression'])))
-                for invisible in self.json_data[i][1]["not-shown"]:
-                    symbols.append(invisible)
-                if self.json_data[i][1]['order'] == 0:
-                    symbols.sort(reverse=False)
-                else:
-                    symbols.sort(reverse=True)
-                self.json_data[i][1]['symbols'] = symbols
+        for i in range(len(self.json_data)):
+            self.json_data[i][1]['expression'] = self.json_data[i][1]['expression'].replace(" ", "")
+            symbols = list(set(re.findall(special_op_re, self.json_data[i][1]['expression'])))
+            for invisible in self.json_data[i][1]["not-shown"]:
+                symbols.append(invisible)
+            if self.json_data[i][1]['order'] == 0:
+                symbols.sort(reverse=False)
+            else:
+                symbols.sort(reverse=True)
+            self.json_data[i][1]['symbols'] = symbols
             self._expand_doncares()
+
+    @staticmethod
+    def parse_inputs(expression):
+        special_op_re = re.compile("[^\~!\'\\*&+|#@^=><()]*[0-9A-Za-z]{1,2}[^\~!\'\\*&+|#@^=><()]*")
+        new_exp = expression.replace(" ", "")
+        syms = list(set(re.findall(special_op_re, new_exp)))
+        syms.sort()
+        return syms
 
     def gen_tt(self):
         self._parse_inputs()
@@ -411,9 +412,9 @@ class DrawTT(object):
 
 
 if __name__ == "__main__":
-    sys.stdout.write("\n\nTruth Table Generator by JHYeom.\n\n")
-    sys.stdout.write(MANUAL)
-    sys.stdout.write("\nIf you want to quit. Press Ctrl+C\n")
+    # sys.stdout.write("\n\nTruth Table Generator by JHYeom.\n\n")
+    # sys.stdout.write(MANUAL)
+    # sys.stdout.write("\nIf you want to quit. Press Ctrl+C\n")
     """ while True:
         sys.stdout.write("\nType boolean expression > ")
         exp = sys.stdin.readline()
