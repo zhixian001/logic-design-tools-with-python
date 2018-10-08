@@ -1,0 +1,18 @@
+{
+    "F3": [{
+        "expression": "",
+        "not-shown": [
+        ],
+        "order": 1,
+        "dont-cares" : [        
+        ]
+    }],
+    "F2": [{
+        "expression": "",
+        "not-shown": [
+        ],
+        "order": 1,
+        "dont-cares" : [        
+        ]
+    }]
+}
