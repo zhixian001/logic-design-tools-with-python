@@ -31,8 +31,34 @@ A implies B\n\
 
 import re
 import sys
+import os.path as ospath
+import parse_json
 
 # TODO: Check invalid symbols and expressions with re
+# TODO: Add don't cares
+# TODO: Deal with JSON
+
+class DrawTT(object):
+    def __init__(self, expression=None):
+        if expression != None:
+            pass
+            # TODO:
+    
+    def _parse_inputs(self):
+        pass
+    
+    def _make_csv(self):
+        pass
+
+    def _ttable(self):
+        pass
+
+    def _get_weight(self):
+        pass
+
+    def _calculate_postfix(self):
+        pass
+    
 
 
 def _parse_inputs(expression):
@@ -43,14 +69,15 @@ def _parse_inputs(expression):
     
     return syms
 
-def _make_csv(exp, inputs, nested_list):
-    with open ('result_csv.csv', mode='w') as f:
+def _make_csv(exp, inputs, nested_list, output='result_csv'):
+    with open (ospath.join("output", output+".csv"), mode='w') as f:
         f.write(exp)
         f.write(',')
         for sym in inputs:
             f.write(sym)
             f.write(',')
-        f.write("Out\n")
+        f.write(output)
+        f.write("\n")
 
         for n_list_index in range(len(nested_list)):
             f.write(str(n_list_index))
@@ -61,7 +88,7 @@ def _make_csv(exp, inputs, nested_list):
             f.write(str(nested_list[n_list_index][-1]))
             f.write('\n')
     
-    print("Check CSV")
+    sys.stdout.write("Check CSV\n")
 
         
 
@@ -212,6 +239,12 @@ if __name__ == "__main__":
         exp = sys.stdin.readline()
         print(exp)
         exp = exp.replace("\n", "")
+        try:
+            ttable(exp, *_parse_inputs(exp))
+        except IndexError as e1:
+            print("\nIndexError. There's Something problem with your expression or this program.\n")
+        except PermissionError as e2:
+            print("\nPermissionError. Close CSV file to write!\n")
+        
 
-        ttable(exp, *_parse_inputs(exp))
         
