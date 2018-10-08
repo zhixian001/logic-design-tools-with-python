@@ -1,6 +1,6 @@
 {
     "F3": [{
-        "expression": "",
+        "expression": "a*b*c",
         "not-shown": [
         ],
         "order": 1,
@@ -8,11 +8,13 @@
         ]
     }],
     "F2": [{
-        "expression": "",
+        "expression": "a+b",
         "not-shown": [
+            "c"
         ],
-        "order": 1,
-        "dont-cares" : [        
+        "order": 0,
+        "dont-cares" : [
+            "101"       
         ]
     }]
 }
