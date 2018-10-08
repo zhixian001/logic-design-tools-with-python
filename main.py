@@ -137,7 +137,7 @@ if __name__ == "__main__":
                 print("\nPermissionError. Close CSV file to write!\n")
                 continue
             else:
-                t = "Check " + now_filename + "\n"
+                t = "Check " + os.path.join("output", now_filename+".csv") + "\n"
                 sys.stdout.write(t)
 
 
