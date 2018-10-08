@@ -1,1 +1,6 @@
 result_csv.csv
+output
+output/*
+__pycache__
+__pycache__/*
+*.pyc
